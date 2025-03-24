@@ -1,16 +1,18 @@
-using Grpc.Core;
 using UnityEngine;
-using Dakg;
 using Grpc.Net.Client;
+using System;
 
 public class Server : MonoBehaviour
 {
-    const int PORT = 5160;
+    const int PORT = 5207;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    async void Start()
     {
-        var channel = GrpcChannel.ForAddress($"localhost:{PORT}");
-        // var client = new Dakg.Greeter(channel);
+        var channel = GrpcChannel.ForAddress($"https://localhost:{PORT}");
+        var client = new server.Greeter.GreeterClient(channel);
+
+        var result = await client.SayHelloAsync(new());
+        Console.WriteLine(result.Message);
     }
 }
