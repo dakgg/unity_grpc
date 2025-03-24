@@ -1,18 +1,21 @@
 using UnityEngine;
 using Grpc.Net.Client;
 using System;
+using System.Net.Http;
+using Cysharp.Net.Http;
 
 public class Server : MonoBehaviour
 {
-    const int PORT = 5207;
+    const int PORT = 5011;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     async void Start()
     {
-        var channel = GrpcChannel.ForAddress($"https://localhost:{PORT}");
-        var client = new server.Greeter.GreeterClient(channel);
+        using var handler = new YetAnotherHttpHandler();
+        using var channel = GrpcChannel.ForAddress($"http://localhost:{PORT}", new GrpcChannelOptions() { HttpHandler = handler });
+        var greeter = new server.Greeter.GreeterClient(channel);
 
-        var result = await client.SayHelloAsync(new());
+        var result = await greeter.SayHelloAsync(new());
         Console.WriteLine(result.Message);
     }
 }

@@ -1,6 +1,24 @@
+using System.Net;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Kestrel 서버 설정 추가
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.Listen(IPAddress.Any, 5011, ListenOptions =>
+    {
+        ListenOptions.Protocols = HttpProtocols.Http2;
+    });
+
+    // 기존의 HTTPS 설정이 있다면 그대로 두거나 다음처럼 추가
+    options.Listen(IPAddress.Any, 5012, listenOptions =>
+    {
+        listenOptions.UseHttps();
+        listenOptions.Protocols = HttpProtocols.Http2;
+    });
+});
 
 // Add services to the container.
 builder.Services.AddGrpc();

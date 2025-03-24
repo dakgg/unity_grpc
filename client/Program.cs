@@ -1,7 +1,7 @@
 ﻿using Grpc.Net.Client;
 using server;
 
-using var channel = GrpcChannel.ForAddress("https://localhost:5207");
+using var channel = GrpcChannel.ForAddress("https://localhost:5012");
 var client = new Greeter.GreeterClient(channel);
 
 var reply = await client.SayHelloAsync(new HelloRequest { Name = "gRPC!" });
