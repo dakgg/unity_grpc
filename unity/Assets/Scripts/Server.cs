@@ -1,7 +1,6 @@
 using UnityEngine;
 using Grpc.Net.Client;
 using System;
-using System.Net.Http;
 using Cysharp.Net.Http;
 
 public class Server : MonoBehaviour

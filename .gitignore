@@ -4,6 +4,8 @@ server/obj/*
 unity/Library/*
 unity/Temp/*
 unity/Logs/*
+unity/UserSettings/Layouts/default-6000.dwlt
+unity/*.csproj
 
 client/bin/*
 client/obj/*
