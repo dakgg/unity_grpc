@@ -4,8 +4,11 @@ server/obj/*
 unity/Library/*
 unity/Temp/*
 unity/Logs/*
-unity/UserSettings/Layouts/default-6000.dwlt
+unity/UserSettings/Layouts/*
+unity/.vscode/*
 unity/*.csproj
+unity/*.sln
 
 client/bin/*
 client/obj/*
+
